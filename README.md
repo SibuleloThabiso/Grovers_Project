@@ -132,7 +132,7 @@ This project is maintained collaboratively using GitHub. Group members should wo
 
 ### Academic Context
 
-**Module:** COMP717
+**Module:** COMP718
 
 **Project:** Implementation and Evaluation of Grover's Search Algorithm
 

@@ -126,14 +126,8 @@ The `results/` directory contains experimental outputs and figures used to analy
 * Number of qubits required
 * Quantum circuit complexity
 
-### Group Collaboration
-
-This project is maintained collaboratively using GitHub. Group members should work on separate branches, commit their changes, and submit pull requests for review before merging changes into the main branch.
-
 ### Academic Context
 
 **Module:** COMP718
 
 **Project:** Implementation and Evaluation of Grover's Search Algorithm
-
-**Contributors:** See the repository's contributor history for project contributions.

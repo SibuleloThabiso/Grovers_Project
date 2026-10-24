@@ -1,6 +1,6 @@
 # Grover's Search Algorithm
 
-## COMP717 Group Project
+## COMP718 Group Project
 
 ### Project Overview
 

@@ -39,7 +39,6 @@ from src.grover import (
 # ------------------------------------------------------------------
 st.set_page_config(
     page_title="Grover's Algorithm Dashboard",
-    page_icon="⚛️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -47,7 +46,7 @@ st.set_page_config(
 # ------------------------------------------------------------------
 # Title
 # ------------------------------------------------------------------
-st.title("⚛️ Grover's Quantum Search — Interactive Dashboard")
+st.title("Grover's Quantum Search — Interactive Dashboard")
 st.caption(
     "Experimental evaluation of Grover's algorithm vs classical linear search "
     "— query complexity comparison."
@@ -56,7 +55,7 @@ st.caption(
 # ------------------------------------------------------------------
 # Sidebar controls
 # ------------------------------------------------------------------
-st.sidebar.header("⚙️ Experiment Controls")
+st.sidebar.header("Experiment Controls")
 
 n_qubits = st.sidebar.slider(
     "Number of qubits (n)",
@@ -90,7 +89,7 @@ shots = st.sidebar.select_slider(
     value=1024,
 )
 
-run_button = st.sidebar.button("🚀 Run Experiment", type="primary", use_container_width=True)
+run_button = st.sidebar.button("Run Experiment", type="primary", use_container_width=True)
 
 st.sidebar.markdown("---")
 st.sidebar.markdown(
@@ -106,12 +105,12 @@ st.sidebar.markdown(
 # Tabs
 # ------------------------------------------------------------------
 tab1, tab2, tab3, tab4, tab5 , tab6 = st.tabs([
-    "🏁 Run Experiment",
-    "📊 Query Complexity",
-    "🎯 Success Probability",
-    "🔌 Circuit",
-    "📁 Stored Results",
-    "🗂️ Search a Dataset",
+    "Run Experiment",
+    "Query Complexity",
+    "Success Probability",
+    "Circuit",
+    "Stored Results",
+    "Search a Dataset",
 ])
 
 # ==================================================================
@@ -121,7 +120,7 @@ with tab1:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("🏛️ Classical Linear Search")
+        st.subheader("Classical Linear Search")
         if run_button:
             search_space = list(range(N))
             t0 = time.perf_counter()
@@ -133,7 +132,7 @@ with tab1:
             st.metric("Wall-clock time", f"{(t1 - t0) * 1000:.3f} ms")
 
     with col2:
-        st.subheader("⚛️ Grover's Quantum Search")
+        st.subheader("Grover's Quantum Search")
         if run_button:
             with st.spinner("Simulating quantum circuit..."):
                 result = run_grover(
@@ -153,7 +152,7 @@ with tab1:
 
     if run_button:
         st.markdown("---")
-        st.subheader("📋 Comparison Summary")
+        st.subheader("Comparison Summary")
 
         advantage = comparisons / max(1, result["iterations"])
         st.info(
@@ -162,13 +161,13 @@ with tab1:
             f"**Advantage:** {advantage:.2f}× fewer queries"
         )
     else:
-        st.info("👈 Configure parameters in the sidebar and click **Run Experiment**.")
+        st.info("Configure parameters in the sidebar and click **Run Experiment**.")
 
 # ==================================================================
 # TAB 2 — Query Complexity (stored CSV)
 # ==================================================================
 with tab2:
-    st.subheader("📈 Query Complexity Scaling")
+    st.subheader("Query Complexity Scaling")
 
     csv_path = os.path.join(ROOT, "results", "query_complexity_results.csv")
     if os.path.exists(csv_path):
@@ -189,12 +188,12 @@ with tab2:
         st.pyplot(fig)
         plt.close(fig)
 
-        st.subheader("📋 Data Table")
+        st.subheader("Data Table")
         st.dataframe(df, use_container_width=True)
 
         csv = df.to_csv(index=False).encode("utf-8")
         st.download_button(
-            "⬇️ Download CSV",
+            "⬇Download CSV",
             csv,
             "query_complexity_results.csv",
             "text/csv",
@@ -209,7 +208,7 @@ with tab2:
 # TAB 3 — Success Probability Sweep
 # ==================================================================
 with tab3:
-    st.subheader("🎯 Grover Success Probability vs Iterations")
+    st.subheader("Grover Success Probability vs Iterations")
     st.caption(
         "Shows the characteristic oscillation of amplitude amplification. "
         "Over-iterating reduces success probability."
@@ -256,7 +255,7 @@ with tab3:
 # TAB 4 — Circuit Visualisation
 # ==================================================================
 with tab4:
-    st.subheader("🔌 Grover Circuit Diagram")
+    st.subheader("Grover Circuit Diagram")
     st.caption(
         f"Circuit for N={N} (n={n_qubits} qubits), "
         f"target={target_index}, iterations={iterations}."
@@ -279,7 +278,7 @@ with tab4:
 # TAB 5 — Stored results file browser
 # ==================================================================
 with tab5:
-    st.subheader("📁 Project Results")
+    st.subheader("Project Results")
 
     results_dir = os.path.join(ROOT, "results")
     if os.path.exists(results_dir):
@@ -294,7 +293,7 @@ with tab5:
 
     figures_dir = os.path.join(ROOT, "results", "figures")
     if os.path.exists(figures_dir):
-        st.subheader("🖼️ Generated Figures")
+        st.subheader("Generated Figures")
         for f in sorted(os.listdir(figures_dir)):
             if f.lower().endswith((".png", ".jpg", ".jpeg")):
                 st.image(
@@ -307,7 +306,7 @@ with tab5:
 # TAB 6 — Search a Dataset
 # ==================================================================
 with tab6:
-    st.subheader("🗂️ Search an Unstructured Dataset")
+    st.subheader("Search an Unstructured Dataset")
     st.caption(
         "Type a value to search for. Both algorithms search the same "
         "dataset — Grover's algorithm wins when N is large."
@@ -347,7 +346,7 @@ with tab6:
 
     # Target input
     target = st.text_input(
-        "🔍 Enter a value to search for:",
+        "Enter a value to search for:",
         value=items[N // 2],  # default to middle item
     )
 
@@ -361,7 +360,7 @@ with tab6:
 
             # Classical
             with col1:
-                st.markdown("### 🏛️ Classical Linear Search")
+                st.markdown("### Classical Linear Search")
                 with st.spinner("Searching..."):
                     _, comparisons = linear_search(items, target)
                 st.metric("Comparisons", comparisons)
@@ -369,7 +368,7 @@ with tab6:
 
             # Grover
             with col2:
-                st.markdown("### ⚛️ Grover's Algorithm")
+                st.markdown("### Grover's Algorithm")
                 with st.spinner("Simulating quantum circuit..."):
                     result = run_grover(
                         n_qubits=n_qubits,
